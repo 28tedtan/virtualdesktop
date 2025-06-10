@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 95 Desktop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="desktop" id="desktop">
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-window="my-computer">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='14' height='8' x='5' y='2' rx='2'/><rect width='20' height='8' x='2' y='14' rx='2'/><path d='M6 18h2'/><path d='M12 18h6'/></svg>" alt="Computer">
+                <span>My Computer</span>
+            </div>
+            <div class="desktop-icon" data-window="boogle">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z'/><polyline points='14,2 14,8 20,8'/></svg>" alt="Boogle">
+                <span>Boogle</span>
+            </div>
+            <div class="desktop-icon" data-window="spotify">
+                <img src="https://cdn4.iconfinder.com/data/icons/social-media-and-logos-12/32/Logo_Spotify-1024.png" alt="Spotify">
+                <span>Spotify</span>
+            </div>
+            <div class="desktop-icon" data-window="recycle-bin">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 6h18'/><path d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'/><path d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'/></svg>" alt="Recycle Bin">
+                <span>Recycle Bin</span>
+            </div>
+            <div class="desktop-icon" onclick="openThemeCustomizer()">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/><circle cx='12' cy='12' r='3'/></svg>" alt="Settings">
+                <span>Settings</span>
+            </div>
+        </div>
+
+        <!-- Windows -->
+        <div class="window" id="my-computer" data-title="My Computer">
+            <div class="window-header">
+                <div class="window-title">My Computer</div>
+                <div class="window-controls">
+                    <div class="window-control" onclick="minimizeWindow('my-computer')">_</div>
+                    <div class="window-control" onclick="closeWindow('my-computer')">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <p>This is the My Computer window. Here you would see your drives and system information.</p>
+                <br>
+                <p>💾 (A:) Floppy Disk</p>
+                <p>💿 (C:) Hard Drive</p>
+                <p>💿 (D:) CD-ROM Drive</p>
+            </div>
+            <div class="resize-handle resize-n"></div>
+            <div class="resize-handle resize-s"></div>
+            <div class="resize-handle resize-e"></div>
+            <div class="resize-handle resize-w"></div>
+            <div class="resize-handle resize-ne"></div>
+            <div class="resize-handle resize-nw"></div>
+            <div class="resize-handle resize-se"></div>
+            <div class="resize-handle resize-sw"></div>
+        </div>
+
+        <div class="window" id="boogle" data-title="Boogle - Internet Explorer">
+            <div class="window-header">
+                <div class="window-title">Boogle - Internet Explorer</div>
+                <div class="window-controls">
+                    <div class="window-control" onclick="minimizeWindow('boogle')">_</div>
+                    <div class="window-control" onclick="closeWindow('boogle')">×</div>
+                </div>
+            </div>
+            <div class="window-content" style="padding: 0;">
+                <!-- Title Bar -->
+                <div class="title-bar">
+                    <div class="title-bar-icon"></div>
+                    <div class="title-text">Internet Explorer</div>
+                    <div class="window-controls">
+                        <div class="control-btn" onclick="minimizeWindow('boogle')">_</div>
+                        <div class="control-btn" onclick="maximizeWindow('boogle')">□</div>
+                        <div class="control-btn" onclick="closeWindow('boogle')">×</div>
+                    </div>
+                </div>
+
+                <!-- Menu Bar -->
+                <div class="menu-bar">
+                    <div class="dropdown">
+                        <div class="menu-item" onclick="toggleDropdown(this)">File</div>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="newWindow()">New Window</a>
+                            <a href="#" onclick="openFile()">Open...</a>
+                            <a href="#" onclick="saveAs()">Save As...</a>
+                            <a href="#" onclick="print()">Print...</a>
+                            <a href="#" onclick="closeWindow('boogle')">Close</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="menu-item" onclick="toggleDropdown(this)">Edit</div>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="cut()">Cut</a>
+                            <a href="#" onclick="copy()">Copy</a>
+                            <a href="#" onclick="paste()">Paste</a>
+                            <a href="#" onclick="selectAll()">Select All</a>
+                            <a href="#" onclick="find()">Find...</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="menu-item" onclick="toggleDropdown(this)">View</div>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="refresh()">Refresh</a>
+                            <a href="#" onclick="viewSource()">Source</a>
+                            <a href="#" onclick="fullScreen()">Full Screen</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="menu-item" onclick="toggleDropdown(this)">Favorites</div>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="addToFavorites()">Add to Favorites...</a>
+                            <a href="#" onclick="organizeFavorites()">Organize Favorites...</a>
+                            <a href="#" onclick="navigateTo('http://www.microsoft.com')">Microsoft</a>
+                            <a href="#" onclick="navigateTo('http://www.yahoo.com')">Yahoo!</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="menu-item" onclick="toggleDropdown(this)">Tools</div>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="internetOptions()">Internet Options...</a>
+                            <a href="#" onclick="windowsUpdate()">Windows Update</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="menu-item" onclick="toggleDropdown(this)">Help</div>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="showHelp()">Help Topics</a>
+                            <a href="#" onclick="aboutIE()">About Internet Explorer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="toolbar-btn" onclick="goBack()" title="Back">◀</div>
+                    <div class="toolbar-btn" onclick="goForward()" title="Forward">▶</div>
+                    <div class="toolbar-btn" onclick="stopLoading()" title="Stop">■</div>
+                    <div class="toolbar-btn" onclick="refresh()" title="Refresh">↻</div>
+                    <div class="toolbar-btn" onclick="goHome()" title="Home">🏠</div>
+                    <div style="width: 2px; height: 20px; background-color: #808080; margin: 0 2px;"></div>
+                    <div class="toolbar-btn" onclick="search()" title="Search">🔍</div>
+                    <div class="toolbar-btn" onclick="showFavorites()" title="Favorites">⭐</div>
+                    <div class="toolbar-btn" onclick="showHistory()" title="History">📋</div>
+                    <div style="width: 2px; height: 20px; background-color: #808080; margin: 0 2px;"></div>
+                    <div class="toolbar-btn" onclick="print()" title="Print">🖨</div>
+                </div>
+
+                <!-- Address Bar -->
+                <div class="address-bar">
+                    <div class="address-label">Address:</div>
+                    <input type="text" class="address-input" id="addressInput" value="about:blank" onkeypress="handleAddressEnter(event)">
+                    <div class="go-btn" onclick="navigate()">Go</div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area">
+                    <div id="browserContent" class="homepage">
+                        <h1>Welcome to Internet Explorer</h1>
+                        <p>The best way to experience the web.</p>
+                        
+                        <div class="favorites-section">
+                            <h3>Quick Links</h3>
+                            <a href="#" class="favorite-link" onclick="navigateTo('http://www.microsoft.com')">Microsoft Corporation</a>
+                            <a href="#" class="favorite-link" onclick="navigateTo('http://www.msn.com')">MSN.com</a>
+                            <a href="#" class="favorite-link" onclick="navigateTo('http://www.hotmail.com')">Hotmail</a>
+                            <a href="#" class="favorite-link" onclick="navigateTo('http://www.windows.com')">Windows</a>
+                        </div>
+                        
+                        <div class="favorites-section">
+                            <h3>Search the Web</h3>
+                            <input type="text" id="searchInput" placeholder="Enter search terms..." style="width: 300px; padding: 4px; margin-right: 10px;">
+                            <button onclick="performSearch()" style="padding: 4px 12px;">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="status-bar">
+                    <div class="status-text" id="statusText">Done</div>
+                    <div class="progress-section">
+                        <div class="loading-animation" id="loadingAnimation"></div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resize-handle resize-n"></div>
+            <div class="resize-handle resize-s"></div>
+            <div class="resize-handle resize-e"></div>
+            <div class="resize-handle resize-w"></div>
+            <div class="resize-handle resize-ne"></div>
+            <div class="resize-handle resize-nw"></div>
+            <div class="resize-handle resize-se"></div>
+            <div class="resize-handle resize-sw"></div>
+        </div>
+
+        <div class="window" id="recycle-bin" data-title="Recycle Bin">
+            <div class="window-header">
+                <div class="window-title">Recycle Bin</div>
+                <div class="window-controls">
+                    <div class="window-control" onclick="minimizeWindow('recycle-bin')">_</div>
+                    <div class="window-control" onclick="closeWindow('recycle-bin')">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <p>The Recycle Bin is empty.</p>
+                <br>
+                <p>To restore an item, select it and click Restore.</p>
+                <p>To permanently delete an item, select it and press Delete.</p>
+            </div>
+            <div class="resize-handle resize-n"></div>
+            <div class="resize-handle resize-s"></div>
+            <div class="resize-handle resize-e"></div>
+            <div class="resize-handle resize-w"></div>
+            <div class="resize-handle resize-ne"></div>
+            <div class="resize-handle resize-nw"></div>
+            <div class="resize-handle resize-se"></div>
+            <div class="resize-handle resize-sw"></div>
+        </div>
+
+        <div class="window" id="spotify" data-title="Spotify">
+            <div class="window-header">
+                <div class="window-title">Spotify</div>
+                <div class="window-controls">
+                    <div class="window-control" onclick="minimizeWindow('spotify')">_</div>
+                    <div class="window-control" onclick="closeWindow('spotify')">×</div>
+                </div>
+            </div>
+            <div class="window-content" style="padding: 0; overflow: hidden;">
+                <iframe 
+                    src="https://open.spotify.com/embed/playlist/2d7468fnsy6P8x8aLm0A0u" 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media"
+                    style="border: none;"
+                ></iframe>
+            </div>
+            <div class="resize-handle resize-n"></div>
+            <div class="resize-handle resize-s"></div>
+            <div class="resize-handle resize-e"></div>
+            <div class="resize-handle resize-w"></div>
+            <div class="resize-handle resize-ne"></div>
+            <div class="resize-handle resize-nw"></div>
+            <div class="resize-handle resize-se"></div>
+            <div class="resize-handle resize-sw"></div>
+        </div>
+
+        <div class="window" id="notepad" data-title="Notepad">
+            <div class="window-header">
+                <div class="window-title">Notepad</div>
+                <div class="window-controls">
+                    <div class="window-control" onclick="minimizeWindow('notepad')">_</div>
+                    <div class="window-control" onclick="closeWindow('notepad')">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <textarea style="width: 100%; height: 100%; border: 1px inset #c0c0c0; background: white; font-family: 'Courier New', monospace; font-size: 12px; resize: none;" placeholder="Type your text here..."></textarea>
+            </div>
+            <div class="resize-handle resize-n"></div>
+            <div class="resize-handle resize-s"></div>
+            <div class="resize-handle resize-e"></div>
+            <div class="resize-handle resize-w"></div>
+            <div class="resize-handle resize-ne"></div>
+            <div class="resize-handle resize-nw"></div>
+            <div class="resize-handle resize-se"></div>
+            <div class="resize-handle resize-sw"></div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="start-button" id="start-button" onclick="toggleStartMenu()">Start</div>
+        <div class="taskbar-buttons" id="taskbar-buttons"></div>
+        <div class="taskbar-time" id="taskbar-time"></div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="start-menu">
+        <div class="start-menu-header">Windows 95</div>
+        <div class="start-menu-items">
+            <div class="start-menu-item" onclick="openWindow('notepad'); toggleStartMenu();">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z'/><polyline points='14,2 14,8 20,8'/></svg>" alt="Notepad">
+                <span>Notepad</span>
+            </div>
+            <div class="start-menu-item" onclick="openThemeCustomizer(); toggleStartMenu();">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/><circle cx='12' cy='12' r='3'/></svg>" alt="Settings">
+                <span>Theme Settings</span>
+            </div>
+            <hr style="margin: 4px 0; border: 1px inset #c0c0c0;">
+            <div class="start-menu-item" onclick="alert('Shutting down...'); toggleStartMenu();">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M18.36 6.64a9 9 0 1 1-12.73 0'/><path d='M12 2v10'/></svg>" alt="Shutdown">
+                <span>Shut Down...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Customizer -->
+    <div class="theme-customizer" id="theme-customizer">
+        <div class="theme-customizer-header">
+            <div>Theme Customizer</div>
+            <div class="window-control" onclick="closeThemeCustomizer()">×</div>
+        </div>
+        <div class="theme-customizer-content">
+            <div class="theme-section">
+                <h3>Preset Themes</h3>
+                <div class="preset-themes">
+                    <div class="preset-button" onclick="applyPresetTheme('classic')">Classic</div>
+                    <div class="preset-button" onclick="applyPresetTheme('dark')">Dark</div>
+                    <div class="preset-button" onclick="applyPresetTheme('green')">Green</div>
+                </div>
+            </div>
+
+            <div class="theme-section">
+                <h3>Desktop</h3>
+                <div class="color-input-group">
+                    <label>Background:</label>
+                    <input type="color" id="desktop-bg" value="#008080" onchange="updateTheme()">
+                </div>
+                <div class="color-input-group">
+                    <label>Icon Text:</label>
+                    <input type="color" id="icon-text" value="#ffffff" onchange="updateTheme()">
+                </div>
+            </div>
+
+            <div class="theme-section">
+                <h3>Windows</h3>
+                <div class="color-input-group">
+                    <label>Background:</label>
+                    <input type="color" id="window-bg" value="#c0c0c0" onchange="updateTheme()">
+                </div>
+                <div class="color-input-group">
+                    <label>Title Bar:</label>
+                    <input type="color" id="title-bar" value="#000080" onchange="updateTheme()">
+                </div>
+            </div>
+
+            <div class="theme-section">
+                <h3>Taskbar</h3>
+                <div class="color-input-group">
+                    <label>Background:</label>
+                    <input type="color" id="taskbar-bg" value="#c0c0c0" onchange="updateTheme()">
+                </div>
+            </div>
+
+            <div class="theme-buttons">
+                <div class="theme-button" onclick="resetTheme()">Reset</div>
+                <div class="theme-button" onclick="closeThemeCustomizer()">Close</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let draggedWindow = null;
+        let dragOffset = { x: 0, y: 0 };
+        let resizingWindow = null;
+        let resizeDirection = null;
+        let resizeStart = { x: 0, y: 0, width: 0, height: 0, left: 0, top: 0 };
+        let windowZIndex = 1000;
+        let openWindows = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            // Add click listeners to desktop icons
+            document.querySelectorAll('.desktop-icon[data-window]').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const windowId = this.getAttribute('data-window');
+                    openWindow(windowId);
+                });
+            });
+
+            // Add window drag and resize functionality
+            initializeWindows();
+            
+            // Close start menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.start-button') && !e.target.closest('.start-menu')) {
+                    document.getElementById('start-menu').style.display = 'none';
+                    document.getElementById('start-button').classList.remove('active');
+                }
+            });
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('taskbar-time').textContent = timeString;
+        }
+
+        function toggleStartMenu() {
+            const startMenu = document.getElementById('start-menu');
+            const startButton = document.getElementById('start-button');
+            
+            if (startMenu.style.display === 'block') {
+                startMenu.style.display = 'none';
+                startButton.classList.remove('active');
+            } else {
+                startMenu.style.display = 'block';
+                startButton.classList.add('active');
+            }
+        }
+
+        function openWindow(windowId) {
+            const window = document.getElementById(windowId);
+            if (!window) return;
+
+            window.style.display = 'block';
+            window.style.zIndex = ++windowZIndex;
+            
+            // Position window with slight offset for multiple windows
+            const offset = openWindows.length * 30;
+            window.style.left = (100 + offset) + 'px';
+            window.style.top = (100 + offset) + 'px';
+            window.style.width = '400px';
+            window.style.height = '300px';
+
+            if (!openWindows.includes(windowId)) {
+                openWindows.push(windowId);
+                updateTaskbar();
+            }
+
+            focusWindow(windowId);
+        }
+
+        function closeWindow(windowId) {
+            const window = document.getElementById(windowId);
+            window.style.display = 'none';
+            
+            openWindows = openWindows.filter(id => id !== windowId);
+            updateTaskbar();
+        }
+
+        function minimizeWindow(windowId) {
+            const window = document.getElementById(windowId);
+            window.style.display = 'none';
+            updateTaskbar();
+        }
+
+        function restoreWindow(windowId) {
+            const window = document.getElementById(windowId);
+            window.style.display = 'block';
+            focusWindow(windowId);
+        }
+
+        function focusWindow(windowId) {
+            // Remove active class from all windows
+            document.querySelectorAll('.window').forEach(w => {
+                w.classList.remove('active');
+                w.querySelector('.window-header').classList.add('inactive');
+            });
+
+            // Add active class to focused window
+            const window = document.getElementById(windowId);
+            window.classList.add('active');
+            window.style.zIndex = ++windowZIndex;
+            window.querySelector('.window-header').classList.remove('inactive');
+            
+            updateTaskbar();
+        }
+
+        function updateTaskbar() {
+            const taskbarButtons = document.getElementById('taskbar-buttons');
+            taskbarButtons.innerHTML = '';
+
+            openWindows.forEach(windowId => {
+                const window = document.getElementById(windowId);
+                const title = window.getAttribute('data-title');
+                const isVisible = window.style.display === 'block';
+                const isActive = window.classList.contains('active');
+
+                const button = document.createElement('div');
+                button.className = 'taskbar-button' + (isActive && isVisible ? ' active' : '');
+                button.textContent = title;
+                button.onclick = () => {
+                    if (isVisible) {
+                        minimizeWindow(windowId);
+                    } else {
+                        restoreWindow(windowId);
+                    }
+                };
+                
+                taskbarButtons.appendChild(button);
+            });
+        }
+
+        function initializeWindows() {
+            document.querySelectorAll('.window').forEach(window => {
+                const header = window.querySelector('.window-header');
+                
+                // Window dragging
+                header.addEventListener('mousedown', function(e) {
+                    if (e.target.closest('.window-control')) return;
+                    
+                    draggedWindow = window;
+                    const rect = window.getBoundingClientRect();
+                    dragOffset.x = e.clientX - rect.left;
+                    dragOffset.y = e.clientY - rect.top;
+                    
+                    focusWindow(window.id);
+                    e.preventDefault();
+                });
+
+                // Window resizing
+                window.querySelectorAll('.resize-handle').forEach(handle => {
+                    handle.addEventListener('mousedown', function(e) {
+                        resizingWindow = window;
+                        resizeDirection = this.className.split(' ')[1].replace('resize-', '');
+                        
+                        const rect = window.getBoundingClientRect();
+                        resizeStart = {
+                            x: e.clientX,
+                            y: e.clientY,
+                            width: rect.width,
+                            height: rect.height,
+                            left: rect.left,
+                            top: rect.top
+                        };
+                        
+                        focusWindow(window.id);
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                });
+
+                // Focus window on click
+                window.addEventListener('mousedown', function() {
+                    focusWindow(window.id);
+                });
+            });
+
+            // Global mouse events
+            document.addEventListener('mousemove', function(e) {
+                if (draggedWindow) {
+                    const x = Math.max(0, e.clientX - dragOffset.x);
+                    const y = Math.max(0, e.clientY - dragOffset.y);
+                    draggedWindow.style.left = x + 'px';
+                    draggedWindow.style.top = y + 'px';
+                }
+
+                if (resizingWindow) {
+                    const deltaX = e.clientX - resizeStart.x;
+                    const deltaY = e.clientY - resizeStart.y;
+                    
+                    let newWidth = resizeStart.width;
+                    let newHeight = resizeStart.height;
+                    let newLeft = resizeStart.left;
+                    let newTop = resizeStart.top;
+
+                    if (resizeDirection.includes('e')) {
+                        newWidth = Math.max(200, resizeStart.width + deltaX);
+                    }
+                    if (resizeDirection.includes('w')) {
+                        newWidth = Math.max(200, resizeStart.width - deltaX);
+                        newLeft = resizeStart.left + deltaX;
+                    }
+                    if (resizeDirection.includes('s')) {
+                        newHeight = Math.max(150, resizeStart.height + deltaY);
+                    }
+                    if (resizeDirection.includes('n')) {
+                        newHeight = Math.max(150, resizeStart.height - deltaY);
+                        newTop = resizeStart.top + deltaY;
+                    }
+
+                    resizingWindow.style.width = newWidth + 'px';
+                    resizingWindow.style.height = newHeight + 'px';
+                    resizingWindow.style.left = newLeft + 'px';
+                    resizingWindow.style.top = newTop + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                draggedWindow = null;
+                resizingWindow = null;
+            });
+        }
+
+        // Theme functions
+        function openThemeCustomizer() {
+            document.getElementById('theme-customizer').style.display = 'block';
+        }
+
+        function closeThemeCustomizer() {
+            document.getElementById('theme-customizer').style.display = 'none';
+        }
+
+        function updateTheme() {
+            const desktopBg = document.getElementById('desktop-bg').value;
+            const iconText = document.getElementById('icon-text').value;
+            const windowBg = document.getElementById('window-bg').value;
+            const titleBar = document.getElementById('title-bar').value;
+            const taskbarBg = document.getElementById('taskbar-bg').value;
+
+            // Update desktop background
+            document.querySelector('.desktop').style.background = desktopBg;
+            document.querySelector('.desktop').style.backgroundImage = 'none';
+            
+            // Update icon text color
+            document.querySelectorAll('.desktop-icon span').forEach(span => {
+                span.style.color = iconText;
+            });
+
+            // Update window colors
+            document.querySelectorAll('.window').forEach(window => {
+                window.style.backgroundColor = windowBg;
+                window.style.borderColor = windowBg;
+            });
+
+            document.querySelectorAll('.window-content').forEach(content => {
+                content.style.backgroundColor = windowBg;
+            });
+
+            document.querySelectorAll('.window-header:not(.inactive)').forEach(header => {
+                header.style.background = `linear-gradient(90deg, ${titleBar}, ${titleBar}dd)`;
+            });
+
+            // Update taskbar colors
+            document.querySelector('.taskbar').style.backgroundColor = taskbarBg;
+            document.querySelectorAll('.taskbar-button, .start-button, .taskbar-time').forEach(el => {
+                el.style.backgroundColor = taskbarBg;
+            });
+        }
+
+        function applyPresetTheme(theme) {
+            const themes = {
+                classic: {
+                    desktop: '#008080',
+                    iconText: '#ffffff',
+                    window: '#c0c0c0',
+                    titleBar: '#000080',
+                    taskbar: '#c0c0c0'
+                },
+                dark: {
+                    desktop: '#1e1e1e',
+                    iconText: '#ffffff',
+                    window: '#2d2d2d',
+                    titleBar: '#0078d7',
+                    taskbar: '#2d2d2d'
+                },
+                green: {
+                    desktop: '#2e4a2e',
+                    iconText: '#ffffff',
+                    window: '#c0d9c0',
+                    titleBar: '#2e4a2e',
+                    taskbar: '#4a6e4a'
+                }
+            };
+
+            const selectedTheme = themes[theme];
+            if (selectedTheme) {
+                document.getElementById('desktop-bg').value = selectedTheme.desktop;
+                document.getElementById('icon-text').value = selectedTheme.iconText;
+                document.getElementById('window-bg').value = selectedTheme.window;
+                document.getElementById('title-bar').value = selectedTheme.titleBar;
+                document.getElementById('taskbar-bg').value = selectedTheme.taskbar;
+                updateTheme();
+            }
+        }
+
+        function resetTheme() {
+            document.getElementById('desktop-bg').value = '#008080';
+            document.getElementById('icon-text').value = '#ffffff';
+            document.getElementById('window-bg').value = '#c0c0c0';
+            document.getElementById('title-bar').value = '#000080';
+            document.getElementById('taskbar-bg').value = '#c0c0c0';
+            updateTheme();
+        }
+
+        // Internet Explorer Functions
+        let currentUrl = 'about:blank';
+        let history = ['about:blank'];
+        let historyIndex = 0;
+        let isLoading = false;
+
+        function showHomePage() {
+            document.getElementById('browserContent').innerHTML = `
+                <div class="homepage">
+                    <h1>Welcome to Internet Explorer</h1>
+                    <p>The best way to experience the web.</p>
+                    
+                    <div class="favorites-section">
+                        <h3>Quick Links</h3>
+                        <a href="#" class="favorite-link" onclick="navigateTo('http://www.microsoft.com')">Microsoft Corporation</a>
+                        <a href="#" class="favorite-link" onclick="navigateTo('http://www.msn.com')">MSN.com</a>
+                        <a href="#" class="favorite-link" onclick="navigateTo('http://www.hotmail.com')">Hotmail</a>
+                        <a href="#" class="favorite-link" onclick="navigateTo('http://www.windows.com')">Windows</a>
+                    </div>
+                    
+                    <div class="favorites-section">
+                        <h3>Search the Web</h3>
+                        <input type="text" id="searchInput" placeholder="Enter search terms..." style="width: 300px; padding: 4px; margin-right: 10px;" onkeypress="handleSearchEnter(event)">
+                        <button onclick="performSearch()" style="padding: 4px 12px;">Search</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+                navigateTo(searchUrl);
+            }
+        }
+
+        function handleSearchEnter(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+
+        function navigateTo(url) {
+            if (!url || url === 'about:blank') {
+                showHomePage();
+                currentUrl = 'about:blank';
+                document.getElementById('addressInput').value = 'about:blank';
+                return;
+            }
+
+            startLoading();
+            currentUrl = url;
+            document.getElementById('addressInput').value = url;
+            
+            // Add to history if it's a new navigation
+            if (historyIndex === history.length - 1) {
+                history.push(url);
+                historyIndex++;
+            }
+
+            // Show the URL in an iframe
+            setTimeout(() => {
+                try {
+                    document.getElementById('browserContent').innerHTML = `
+                        <iframe src="${url}" class="browser-frame" onload="stopLoading()"></iframe>
+                    `;
+                } catch (e) {
+                    showErrorPage(url);
+                }
+                stopLoading();
+            }, 1000);
+        }
+
+        function navigate() {
+            const addressInput = document.getElementById('addressInput');
+            let url = addressInput.value.trim();
+            
+            if (!url) return;
+            
+            // Add protocol if missing
+            if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('about:')) {
+                url = 'http://' + url;
+            }
+            
+            navigateTo(url);
+        }
+
+        function handleAddressEnter(event) {
+            if (event.key === 'Enter') {
+                navigate();
+            }
+        }
+
+        function startLoading() {
+            isLoading = true;
+            document.getElementById('statusText').textContent = 'Loading...';
+            document.getElementById('loadingAnimation').style.display = 'block';
+            document.getElementById('progressFill').style.width = '0%';
+            
+            // Simulate loading progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                }
+                document.getElementById('progressFill').style.width = progress + '%';
+            }, 100);
+        }
+
+        function stopLoading() {
+            isLoading = false;
+            document.getElementById('statusText').textContent = 'Done';
+            document.getElementById('loadingAnimation').style.display = 'none';
+            document.getElementById('progressFill').style.width = '100%';
+            
+            setTimeout(() => {
+                document.getElementById('progressFill').style.width = '0%';
+            }, 500);
+        }
+
+        function showErrorPage(url) {
+            document.getElementById('browserContent').innerHTML = `
+                <div class="error-page">
+                    <div class="error-icon">!</div>
+                    <h2>Internet Explorer cannot display the webpage</h2>
+                    <p>The page you are looking for is currently unavailable.</p>
+                    <p><strong>URL:</strong> ${url}</p>
+                    <p>Please check the address and try again.</p>
+                    <button onclick="goHome()" style="margin-top: 10px; padding: 4px 12px;">Go to Home Page</button>
+                </div>
+            `;
+        }
+
+        function goBack() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                navigateTo(history[historyIndex]);
+            }
+        }
+
+        function goForward() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                navigateTo(history[historyIndex]);
+            }
+        }
+
+        function goHome() {
+            navigateTo('about:blank');
+        }
+
+        function refresh() {
+            if (currentUrl) {
+                navigateTo(currentUrl);
+            }
+        }
+
+        function search() {
+            const searchTerm = prompt('Enter search terms:');
+            if (searchTerm) {
+                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+                navigateTo(searchUrl);
+            }
+        }
+
+        function toggleDropdown(element) {
+            const dropdown = element.parentElement;
+            const isActive = dropdown.classList.contains('active');
+            
+            // Close all dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            
+            // Toggle current dropdown
+            if (!isActive) {
+                dropdown.classList.add('active');
+            }
+        }
+
+        // Placeholder functions for menu items
+        function newWindow() { alert('New Window'); }
+        function openFile() { alert('Open File'); }
+        function saveAs() { alert('Save As'); }
+        function print() { alert('Print'); }
+        function cut() { alert('Cut'); }
+        function copy() { alert('Copy'); }
+        function paste() { alert('Paste'); }
+        function selectAll() { alert('Select All'); }
+        function find() { alert('Find'); }
+        function viewSource() { alert('View Source'); }
+        function fullScreen() { alert('Full Screen'); }
+        function addToFavorites() { alert('Add to Favorites'); }
+        function organizeFavorites() { alert('Organize Favorites'); }
+        function internetOptions() { alert('Internet Options'); }
+        function windowsUpdate() { alert('Windows Update'); }
+        function showHelp() { alert('Help Topics'); }
+        function aboutIE() { alert('About Internet Explorer\n\nVersion 5.0'); }
+        function showFavorites() { alert('Favorites'); }
+        function showHistory() { alert('History'); }
+        function maximizeWindow(windowId) { alert('Maximize'); }
+
+        // Initialize Internet Explorer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+                }
+            });
+
+            // Show homepage when opening Boogle
+            const boogleWindow = document.getElementById('boogle');
+            if (boogleWindow) {
+                showHomePage();
+            }
+        });
+    </script>
+</body>
+</html>
