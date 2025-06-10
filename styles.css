@@ -143,11 +143,11 @@ body {
     right: 0;
     height: 50px;
     background-color: #a012dd;
-    border-top: 1px solid #dfdfdf;
+    border-top: 2px solid #c0c0c0;
     display: flex;
     align-items: center;
-    padding: 2px;
-    z-index: 9999;
+    padding: 0 10px;
+    z-index: 1000;
 }
 
 .taskbar-logo {
@@ -715,4 +715,392 @@ body {
 .wallpaper-section .theme-button {
     width: 100%;
     text-align: center;
+}
+
+/* Vinyl Player Styles */
+#vinyl-player {
+    min-width: 800px;
+    min-height: 600px;
+}
+
+#vinyl-player .window-content {
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0f4ff 0%, #f9f0ff 100%);
+}
+
+#vinyl-player .player {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#vinyl-player .player-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+#vinyl-player .turntable {
+    flex: 1;
+    position: relative;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    min-width: 300px;
+}
+
+#vinyl-player .vinyl {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+#vinyl-player .vinyl.playing {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#vinyl-player .grooves {
+    position: absolute;
+    inset: 0;
+    opacity: 0.2;
+}
+
+#vinyl-player .groove {
+    position: absolute;
+    inset: 0;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+}
+
+#vinyl-player .label {
+    width: 33.333%;
+    height: 33.333%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#vinyl-player .tone-arm {
+    position: absolute;
+    right: -1rem;
+    top: 3rem;
+    width: 6rem;
+    height: 16rem;
+    pointer-events: none;
+    transform-origin: bottom right;
+    transition: transform 0.7s ease-in-out;
+}
+
+#vinyl-player .tone-arm-base {
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#vinyl-player .tone-arm-body {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2.5rem;
+    width: 0.5rem;
+    height: 12rem;
+    background: linear-gradient(90deg, #4a4a4a 0%, #2d2d2d 100%);
+    border-radius: 0.25rem;
+    transform: rotate(-45deg);
+    transform-origin: bottom center;
+    transition: transform 0.7s ease-in-out;
+}
+
+#vinyl-player .tone-arm-head {
+    position: absolute;
+    top: 0;
+    left: -0.5rem;
+    width: 1.5rem;
+    height: 2.5rem;
+    background: linear-gradient(90deg, #2d2d2d 0%, #1a1a1a 100%);
+    border-radius: 0.25rem;
+    transform: rotate(-15deg);
+}
+
+#vinyl-player .stylus {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0.125rem;
+    height: 1rem;
+    background: #ff4757;
+    transform: translateX(-50%);
+}
+
+#vinyl-player .tone-arm.playing {
+    transform: rotate(-30deg);
+}
+
+#vinyl-player .tone-arm.playing .tone-arm-body {
+    transform: rotate(-10deg);
+}
+
+#vinyl-player .controls {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+}
+
+#vinyl-player .progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    background: #e9ecef;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+#vinyl-player .progress {
+    height: 100%;
+    background: #4a90e2;
+    border-radius: 0.25rem;
+    transition: width 0.1s linear;
+    width: 0%;
+    position: relative;
+}
+
+#vinyl-player .progress::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background: #4a90e2;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#vinyl-player .progress-bar:hover .progress::after {
+    opacity: 1;
+}
+
+#vinyl-player .control-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#vinyl-player .time {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+#vinyl-player .buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#vinyl-player button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+#vinyl-player button:hover {
+    background: #f0f0f0;
+}
+
+#vinyl-player .play-button {
+    width: 3rem;
+    height: 3rem;
+    background: #4a90e2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#vinyl-player .play-button:hover {
+    background: #357abd;
+}
+
+#vinyl-player .music-details {
+    width: 16rem;
+    background: #f8f9fa;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+#vinyl-player .cover-art {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#vinyl-player .song-info h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#vinyl-player .song-info p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#vinyl-player .youtube-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    background: white;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+#vinyl-player .youtube-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+#vinyl-player .input-container {
+    margin-top: 1rem;
+}
+
+#vinyl-player .input-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #666;
+}
+
+#vinyl-player .load-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#vinyl-player .status {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    text-align: center;
+    display: none;
+}
+
+#vinyl-player .status.error {
+    background: #ffeaea;
+    color: #d63031;
+}
+
+#vinyl-player .status.success {
+    background: #e8f5e8;
+    color: #00b894;
+}
+
+#vinyl-player .status.info {
+    background: #e3f2fd;
+    color: #0984e3;
+}
+
+#vinyl-player .youtube-container {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 560px;
+    height: 315px;
+}
+
+#vinyl-player .fullscreen-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #666;
+    transition: color 0.2s;
+}
+
+#vinyl-player .fullscreen-button:hover {
+    color: #4a90e2;
+}
+
+@media (max-width: 768px) {
+    #vinyl-player .player-content {
+        flex-direction: column;
+    }
+    #vinyl-player .music-details {
+        width: 100%;
+    }
+}
+
+.confetti-button {
+    background-color: #a012dd;
+    color: white;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.confetti-button:hover {
+    background-color: #8a0fb8;
+}
+
+.confetti-button:active {
+    background-color: #6d0c8f;
+    transform: translateY(1px);
 } 

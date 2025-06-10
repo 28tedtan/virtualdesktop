@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 Desktop</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="desktop" id="desktop">
@@ -20,6 +21,10 @@
             <div class="desktop-icon" data-window="spotify">
                 <img src="https://cdn4.iconfinder.com/data/icons/social-media-and-logos-12/32/Logo_Spotify-1024.png" alt="Spotify">
                 <span>Spotify</span>
+            </div>
+            <div class="desktop-icon" data-window="vinyl-player">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><circle cx='12' cy='12' r='3'/><path d='M12 2v4'/><path d='M12 18v4'/><path d='M2 12h4'/><path d='M18 12h4'/></svg>" alt="Vinyl Player">
+                <span>Vinyl Player</span>
             </div>
             <div class="desktop-icon" data-window="recycle-bin">
                 <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 6h18'/><path d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'/><path d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'/></svg>" alt="Recycle Bin">
@@ -250,6 +255,58 @@
             <div class="resize-handle resize-sw"></div>
         </div>
 
+        <div class="window" id="vinyl-player" data-title="Vinyl Player">
+            <div class="window-header">
+                <div class="window-title">Vinyl Player</div>
+                <div class="window-controls">
+                    <div class="window-control" onclick="minimizeWindow('vinyl-player')">_</div>
+                    <div class="window-control" onclick="closeWindow('vinyl-player')">×</div>
+                </div>
+            </div>
+            <div class="window-content" style="padding: 0; overflow: hidden;">
+                <div class="player">
+                    <div class="player-content">
+                        <div class="turntable">
+                            <div class="vinyl"><div class="grooves"></div><div class="label"></div></div>
+                            <div class="tone-arm"><div class="tone-arm-base"></div><div class="tone-arm-body"><div class="tone-arm-head"><div class="stylus"></div></div></div></div>
+                        </div>
+                        <div class="music-details">
+                            <img class="cover-art" src="https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg" alt="Album cover">
+                            <div class="song-info">
+                                <h2>Vinyl Player</h2>
+                                <p>Enter a YouTube URL to start playing music!</p>
+                                <div class="input-container">
+                                    <label for="youtube-url" class="input-label">YouTube URL</label>
+                                    <input type="text" id="youtube-url" class="youtube-input" placeholder="URL Link">
+                                    <button id="load-music" class="load-button">Load Music</button>
+                                    <div id="status" class="status"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <div class="progress-bar"><div class="progress"></div></div>
+                        <div class="control-buttons">
+                            <span class="time">0:00 / 0:00</span>
+                            <div class="buttons">
+                                <button class="fullscreen-button" title="Toggle Fullscreen">⛶</button>
+                                <button class="play-button" disabled>▶</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube-container"><div id="youtube-player"></div></div>
+            </div>
+            <div class="resize-handle resize-n"></div>
+            <div class="resize-handle resize-s"></div>
+            <div class="resize-handle resize-e"></div>
+            <div class="resize-handle resize-w"></div>
+            <div class="resize-handle resize-ne"></div>
+            <div class="resize-handle resize-nw"></div>
+            <div class="resize-handle resize-se"></div>
+            <div class="resize-handle resize-sw"></div>
+        </div>
+
         <div class="window" id="notepad" data-title="Notepad">
             <div class="window-header">
                 <div class="window-title">Notepad</div>
@@ -277,6 +334,7 @@
         <img src="cuteos.png" alt="CuteOS" class="taskbar-logo">
         <div class="start-button" id="start-button" onclick="toggleStartMenu()">Start</div>
         <div class="taskbar-buttons" id="taskbar-buttons"></div>
+        <div class="confetti-button" onclick="triggerConfetti()">🎉</div>
         <div class="taskbar-time" id="taskbar-time"></div>
     </div>
 
@@ -393,6 +451,9 @@
                     document.getElementById('start-button').classList.remove('active');
                 }
             });
+
+            // Initialize vinyl player
+            initializeVinylPlayer();
         });
 
         function updateTime() {
@@ -920,6 +981,304 @@
                 showHomePage();
             }
         });
+
+        // Vinyl Player Functions
+        function initializeVinylPlayer() {
+            let player, isPlaying = false, isPlayerReady = false, currentVideoId = null;
+            const vinyl = document.querySelector('#vinyl-player .vinyl');
+            const toneArm = document.querySelector('#vinyl-player .tone-arm');
+            const playButton = document.querySelector('#vinyl-player .play-button');
+            const progress = document.querySelector('#vinyl-player .progress');
+            const timeDisplay = document.querySelector('#vinyl-player .time');
+            const youtubeInput = document.querySelector('#vinyl-player #youtube-url');
+            const loadMusicButton = document.querySelector('#vinyl-player #load-music');
+            const statusDiv = document.querySelector('#vinyl-player #status');
+            const songTitle = document.querySelector('#vinyl-player .song-info h2');
+            const songArtist = document.querySelector('#vinyl-player .song-info p');
+            const coverArt = document.querySelector('#vinyl-player .cover-art');
+            const label = document.querySelector('#vinyl-player .label');
+            const fullscreenButton = document.querySelector('#vinyl-player .fullscreen-button');
+            const progressBar = document.querySelector('#vinyl-player .progress-bar');
+
+            // Initialize grooves
+            document.querySelector('#vinyl-player .grooves').innerHTML = [...Array(20)].map((_, i) => 
+                `<div class="groove" style="transform:scale(${0.2+i*0.04})"></div>`
+            ).join('');
+
+            function showStatus(msg, type='info') {
+                statusDiv.textContent = msg;
+                statusDiv.className = `status ${type}`;
+                statusDiv.style.display = 'block';
+                if (type !== 'error') setTimeout(() => { statusDiv.style.display = 'none'; }, 3000);
+            }
+
+            function extractVideoId(url) {
+                const m = url.match(/(?:youtube\.com.*(?:v=|\/v\/|embed\/)|youtu\.be\/)([^&\n?#]+)/);
+                return m && m[1].length === 11 ? m[1] : null;
+            }
+
+            // Load YouTube IFrame API
+            if (!window.YT) {
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                document.body.appendChild(tag);
+            }
+
+            // Define the onYouTubeIframeAPIReady function globally
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('youtube-player', {
+                    height: '315',
+                    width: '560',
+                    playerVars: { 
+                        'playsinline': 1,
+                        'controls': 0,
+                        'enablejsapi': 1,
+                        'origin': window.location.origin
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange,
+                        'onError': onPlayerError
+                    }
+                });
+                showStatus("YouTube API loaded", 'success');
+            };
+
+            function onPlayerReady() {
+                isPlayerReady = true;
+                showStatus("Player ready", 'success');
+                playButton.disabled = false;
+                fullscreenButton.disabled = false;
+            }
+
+            function onPlayerError(event) {
+                showStatus(`Error: ${event.data}`, 'error');
+                playButton.disabled = true;
+            }
+
+            function onPlayerStateChange(event) {
+                switch (event.data) {
+                    case YT.PlayerState.PLAYING:
+                        isPlaying = true;
+                        vinyl.classList.add('playing');
+                        toneArm.classList.add('playing');
+                        playButton.textContent = '⏸';
+                        updateProgress();
+                        if (currentVideoId) {
+                            updateMetadata(currentVideoId);
+                        }
+                        break;
+                    case YT.PlayerState.PAUSED:
+                    case YT.PlayerState.ENDED:
+                        isPlaying = false;
+                        vinyl.classList.remove('playing');
+                        toneArm.classList.remove('playing');
+                        playButton.textContent = '▶';
+                        updateToneArm(0);
+                        break;
+                }
+            }
+
+            function updateToneArm(progressPercent) {
+                if (progressPercent === 0) {
+                    toneArm.style.transform = 'rotate(-60deg)';
+                    toneArm.querySelector('.tone-arm-body').style.transform = 'rotate(-45deg)';
+                } else {
+                    const armAngle = -60 + (progressPercent * 30);
+                    const bodyAngle = -45 + (progressPercent * 35);
+                    toneArm.style.transform = `rotate(${armAngle}deg)`;
+                    toneArm.querySelector('.tone-arm-body').style.transform = `rotate(${bodyAngle}deg)`;
+                }
+            }
+
+            function handleScrub(e) {
+                if (!player || !isPlayerReady) return;
+                
+                const rect = progressBar.getBoundingClientRect();
+                const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                const time = percent * player.getDuration();
+                
+                player.seekTo(time, true);
+                updateProgress();
+                updateToneArm(percent);
+            }
+
+            let lastScrollTime = 0;
+            const scrollThrottle = 50;
+
+            function handleWheel(e) {
+                if (!player || !isPlayerReady) return;
+                e.preventDefault();
+                
+                const now = Date.now();
+                if (now - lastScrollTime < scrollThrottle) return;
+                lastScrollTime = now;
+
+                const currentTime = player.getCurrentTime();
+                const duration = player.getDuration();
+                const scrollAmount = e.deltaY > 0 ? 2 : -2;
+                const newTime = Math.max(0, Math.min(duration, currentTime + scrollAmount));
+                
+                player.seekTo(newTime, true);
+                const progressPercent = newTime / duration;
+                updateProgress();
+                updateToneArm(progressPercent);
+            }
+
+            function updateProgress() {
+                if (!player || !isPlayerReady) return;
+                const currentTime = player.getCurrentTime();
+                const duration = player.getDuration();
+                const progressPercent = (currentTime / duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+                timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+                updateToneArm(currentTime / duration);
+                if (isPlaying) {
+                    requestAnimationFrame(updateProgress);
+                }
+            }
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                seconds = Math.floor(seconds % 60);
+                return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            function toggleFullscreen() {
+                const playerElement = document.querySelector('#vinyl-player .player');
+                if (!document.fullscreenElement) {
+                    playerElement.requestFullscreen().catch(err => {
+                        showStatus('Error attempting to enable fullscreen: ' + err.message, 'error');
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+
+            document.addEventListener('fullscreenchange', () => {
+                const playerElement = document.querySelector('#vinyl-player .player');
+                if (document.fullscreenElement) {
+                    playerElement.classList.add('fullscreen');
+                    fullscreenButton.textContent = '⮾';
+                } else {
+                    playerElement.classList.remove('fullscreen');
+                    fullscreenButton.textContent = '⛶';
+                }
+            });
+
+            playButton.addEventListener('click', () => {
+                if (!player || !isPlayerReady) {
+                    showStatus("Player not ready yet", "error");
+                    return;
+                }
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            });
+
+            loadMusicButton.addEventListener('click', () => {
+                const url = youtubeInput.value.trim();
+                const id = extractVideoId(url);
+                if (!id) {
+                    showStatus("Invalid YouTube URL", "error");
+                    return;
+                }
+                if (!isPlayerReady) {
+                    showStatus("Player not ready yet", "error");
+                    return;
+                }
+                currentVideoId = id;
+                player.loadVideoById(id);
+                playButton.disabled = false;
+                updateMetadata(id);
+            });
+
+            function updateMetadata(id) {
+                const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+                coverArt.src = thumb;
+                label.style.backgroundImage = `url('${thumb}')`;
+                
+                if (player && player.getVideoData) {
+                    const videoData = player.getVideoData();
+                    if (videoData) {
+                        songTitle.textContent = videoData.title || 'Unknown Title';
+                        const titleParts = videoData.title.split(' - ');
+                        if (titleParts.length > 1) {
+                            songArtist.textContent = titleParts[0];
+                            songTitle.textContent = titleParts.slice(1).join(' - ');
+                        } else {
+                            songArtist.textContent = videoData.author || 'Unknown Artist';
+                        }
+                    }
+                }
+            }
+
+            vinyl.addEventListener('click', () => {
+                if (!player || !isPlayerReady) {
+                    showStatus("Player not ready yet", "error");
+                    return;
+                }
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            });
+
+            progressBar.addEventListener('click', handleScrub);
+            document.addEventListener('wheel', handleWheel, { passive: false });
+            fullscreenButton.addEventListener('click', toggleFullscreen);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' && e.target !== youtubeInput) {
+                    e.preventDefault();
+                    if (player && isPlayerReady) {
+                        if (isPlaying) {
+                            player.pauseVideo();
+                        } else {
+                            player.playVideo();
+                        }
+                    }
+                }
+            });
+
+            updateToneArm(0);
+            showStatus("Initializing player...", 'info');
+        }
+
+        function triggerConfetti() {
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                
+                // since particles fall down, start a bit higher than random
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                });
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                });
+            }, 250);
+        }
     </script>
 </body>
 </html>
