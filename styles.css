@@ -693,8 +693,8 @@ body {
 
 /* Ensure the window has a minimum size */
 #spotify {
-    min-width: 300px;
-    min-height: 400px;
+    min-width: 550px;
+    min-height: 750px;
 }
 
 .wallpaper-section {
