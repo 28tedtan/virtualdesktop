@@ -274,6 +274,7 @@
 
     <!-- Taskbar -->
     <div class="taskbar">
+        <img src="cuteos.png" alt="CuteOS" class="taskbar-logo">
         <div class="start-button" id="start-button" onclick="toggleStartMenu()">Start</div>
         <div class="taskbar-buttons" id="taskbar-buttons"></div>
         <div class="taskbar-time" id="taskbar-time"></div>
@@ -324,6 +325,12 @@
                 <div class="color-input-group">
                     <label>Icon Text:</label>
                     <input type="color" id="icon-text" value="#ffffff" onchange="updateTheme()">
+                </div>
+                <div class="wallpaper-section">
+                    <label>Custom Wallpaper:</label>
+                    <input type="file" id="wallpaper-upload" accept="image/*" onchange="handleWallpaperUpload(event)">
+                    <button onclick="document.getElementById('wallpaper-upload').click()" class="theme-button">Choose Image</button>
+                    <button onclick="removeWallpaper()" class="theme-button">Remove Wallpaper</button>
                 </div>
             </div>
 
@@ -625,6 +632,27 @@
             document.querySelectorAll('.taskbar-button, .start-button, .taskbar-time').forEach(el => {
                 el.style.backgroundColor = taskbarBg;
             });
+        }
+
+        function handleWallpaperUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const desktop = document.querySelector('.desktop');
+                    desktop.style.backgroundImage = `url(${e.target.result})`;
+                    desktop.style.backgroundSize = 'cover';
+                    desktop.style.backgroundPosition = 'center';
+                    desktop.style.backgroundRepeat = 'no-repeat';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeWallpaper() {
+            const desktop = document.querySelector('.desktop');
+            desktop.style.backgroundImage = 'none';
+            desktop.style.background = document.getElementById('desktop-bg').value;
         }
 
         function applyPresetTheme(theme) {

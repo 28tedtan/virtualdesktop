@@ -141,13 +141,20 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 30px;
-    background-color: #c0c0c0;
+    height: 50px;
+    background-color: #a012dd;
     border-top: 1px solid #dfdfdf;
     display: flex;
     align-items: center;
     padding: 2px;
     z-index: 9999;
+}
+
+.taskbar-logo {
+    height: 40px;
+    width: auto;
+    margin: 0 8px;
+    object-fit: contain;
 }
 
 .start-button {
@@ -156,7 +163,7 @@ body {
     padding: 4px 8px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 22px;
 }
 
 .start-button:active,
@@ -173,8 +180,8 @@ body {
 }
 
 .taskbar-button {
-    background-color: #c0c0c0;
-    border: 2px outset #c0c0c0;
+    background-color: #e573ff;
+    border: 2px outset #3c003c;
     padding: 4px 8px;
     cursor: pointer;
     font-size: 11px;
@@ -186,15 +193,16 @@ body {
 }
 
 .taskbar-button.active {
-    border: 2px inset #c0c0c0;
+    border: 2px inset hsl(0, 0%, 100%);
 }
 
 .taskbar-time {
-    background-color: #c0c0c0;
-    border: 1px inset #c0c0c0;
-    padding: 4px 8px;
-    font-size: 11px;
-    margin-left: 4px;
+    background-color: #ff58e6;
+    border: 0px inset #980faa00;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 22px;
+    margin-left: 10px;
 }
 
 .start-menu {
@@ -202,8 +210,8 @@ body {
     bottom: 30px;
     left: 0;
     width: 200px;
-    background-color: #c0c0c0;
-    border: 2px outset #c0c0c0;
+    background-color: #cd37e8;
+    border: 2px outset #cf5959;
     display: none;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -687,4 +695,24 @@ body {
 #spotify {
     min-width: 300px;
     min-height: 400px;
+}
+
+.wallpaper-section {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wallpaper-section label {
+    font-size: 10px;
+}
+
+.wallpaper-section input[type="file"] {
+    display: none;
+}
+
+.wallpaper-section .theme-button {
+    width: 100%;
+    text-align: center;
 } 
